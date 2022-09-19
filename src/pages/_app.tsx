@@ -1,7 +1,7 @@
 import { AppProps } from "next/app";
 import { globalStyles } from "../styles/global";
 import igniteLogo from '../assets/igniteLogo.svg';
-import Image from "next/image";
+import Image from "next/future/image";
 import { Container, Header } from "../styles/pages/app";
 
 globalStyles();
