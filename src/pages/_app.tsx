@@ -1,5 +1,20 @@
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
-}
+import { AppProps } from "next/app";
+import { globalStyles } from "../styles/global";
+import igniteLogo from '../assets/igniteLogo.svg';
+import Image from "next/image";
+import { Container, Header } from "../styles/pages/app";
 
-export default MyApp;
+globalStyles();
+
+export default function App({ Component, pageProps }: AppProps) {
+  
+  return ( 
+    <Container>
+      <Header>
+        <Image src={igniteLogo} alt="" />
+      </Header>
+
+      <Component {...pageProps} />
+    </Container>
+  )
+}
