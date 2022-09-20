@@ -12,6 +12,7 @@ export const Product = styled('a', {
   borderRadius: 8,
   position: 'relative',
   overflow: 'hidden',
+  cursor: 'pointer',
 
   display: 'flex',
   justifyContent: 'center',
