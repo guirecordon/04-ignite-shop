@@ -28,6 +28,7 @@ export const Product = styled('div', {
     right: '0.25rem',
     left: '0.25rem',
     padding: '2rem',
+    color: '$gray300',
 
     borderRadius: 6,
 
