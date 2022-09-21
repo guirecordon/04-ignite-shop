@@ -41,16 +41,6 @@ export const Product = styled('div', {
     transform: 'translateY(110%)',
     opacity: 0,
     transition: 'all 0.2s ease-in-out',
-
-    strong: {
-      fontSize: '$lg',
-    },
-
-    span: {
-      fontSize: '$xl',
-      fontWeight: 'bold',
-      color: '$green300',
-    },
   },
 
   '&:hover': {
@@ -60,3 +50,30 @@ export const Product = styled('div', {
     }
   }
 });
+
+export const LeftSideFooter = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+
+  strong: {
+    fontSize: '$lg',
+    lineHeight: 1.6,
+  },
+
+  span: {
+    fontSize: '$xl',
+    fontWeight: 'bold',
+    color: '$green300',
+    lineHeight: 1.4,
+  },
+})
+
+export const HandbagContainer = styled('div', {
+  padding: '0.75rem',
+  background: '$green500',
+  borderRadius: 6,
+
+  '&:hover': {
+    opacity: 0.7,
+  }
+})
