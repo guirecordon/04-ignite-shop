@@ -3,8 +3,9 @@ import { GetStaticPaths, GetStaticProps } from "next"
 import Image from "next/future/image"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Stripe from "stripe"
+import Layout from "../../components/layout/layout"
 import { stripe } from "../../lib/stripe"
 import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/pages/product"
 
@@ -43,7 +44,7 @@ export default function Product({ product }: ProductProps) {
   }
 
   return (
-    <>
+    <Layout>
       <Head>
         <title>{product.name} | Ignite Shop</title>
       </Head>
@@ -62,11 +63,11 @@ export default function Product({ product }: ProductProps) {
           </p>
 
           <button disabled={isCreatingCheckoutSession} onClick={handlePurchase}>
-            Comprar agora
+            Colocar na sacola
           </button>
         </ProductDetails>
       </ProductContainer>
-    </>
+    </Layout>
   )
 }
 

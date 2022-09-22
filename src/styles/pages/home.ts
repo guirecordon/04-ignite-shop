@@ -77,3 +77,7 @@ export const HandbagContainer = styled('div', {
     opacity: 0.7,
   }
 })
+
+export const CartModalContainer = styled('section', {
+  color: '$white',
+})

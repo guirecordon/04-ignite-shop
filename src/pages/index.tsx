@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { useKeenSlider } from 'keen-slider/react'
 
-import { HandbagContainer, HomeContainer, LeftSideFooter, Product } from '../styles/pages/home';
+import { CartModalContainer, HandbagContainer, HomeContainer, LeftSideFooter, Product } from '../styles/pages/home';
 
 import 'keen-slider/keen-slider.min.css';
 import { stripe } from '../lib/stripe';
@@ -11,6 +11,8 @@ import { GetStaticProps } from 'next';
 import Stripe from 'stripe';
 import Head from 'next/head';
 import { Handbag } from 'phosphor-react';
+import ModalCartShop from '../components/modalCartShop';
+import Layout from '../components/layout/layout';
 
 
 interface HomeProps {
@@ -31,10 +33,11 @@ export default function Home({ products }: HomeProps) {
   })
 
   return (
-    <>
+    <Layout>
       <Head>
         <title>Home | Ignite Shop</title>
       </Head>
+
 
       <HomeContainer ref={sliderRef} className="keen-slider">
         {products.map(product => {
@@ -56,8 +59,10 @@ export default function Home({ products }: HomeProps) {
             </Link>
           )
         })}
+
+        
       </HomeContainer>
-    </>
+    </Layout>
     );
 }
 
