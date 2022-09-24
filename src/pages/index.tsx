@@ -13,6 +13,8 @@ import Head from 'next/head';
 import { Handbag } from 'phosphor-react';
 import ModalCartShop from '../components/modalCartShop';
 import Layout from '../components/layout/layout';
+import { useContext, useState } from 'react';
+import { CartItemsContext } from '../contexts/CartItemsContext';
 
 
 interface HomeProps {
@@ -31,6 +33,15 @@ export default function Home({ products }: HomeProps) {
       spacing: 48,
     }
   })
+
+  const { addCartItem } = useContext(CartItemsContext);
+
+  function handleSendToCart(e, name, price, image) {
+    e.preventDefault();
+    const data = {name, price, image}
+    
+    addCartItem(data);
+  }
 
   return (
     <Layout>
@@ -51,7 +62,7 @@ export default function Home({ products }: HomeProps) {
                     <strong>{product.name}</strong>
                     <span>{product.price}</span>
                   </LeftSideFooter>
-                  <HandbagContainer>
+                  <HandbagContainer onClick={(e) => handleSendToCart(e, product.name, product.price, product.imageUrl)}>
                     <Handbag size={32} color="#FFFFFF" weight='bold' />
                   </HandbagContainer>
                 </footer>

@@ -73,9 +73,7 @@ export default function Product({ product }: ProductProps) {
 
 export const getStaticPaths: GetStaticPaths = () => {
   return {
-    paths: [
-
-    ],
+    paths: [],
     fallback: true,
   }
 }
