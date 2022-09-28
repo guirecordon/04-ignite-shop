@@ -28,4 +28,6 @@ export const CartIconContainer = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+
+  position: 'relative',
 })
