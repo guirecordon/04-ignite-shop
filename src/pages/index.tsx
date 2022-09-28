@@ -21,8 +21,10 @@ interface HomeProps {
   products: {
     id: string;
     name: string;
+    description: string;
     imageUrl: string;
     price: string;
+    defaultPriceId; string;
   }[]
 }
 
@@ -36,9 +38,9 @@ export default function Home({ products }: HomeProps) {
 
   const { addCartItem } = useContext(CartItemsContext);
 
-  function handleSendToCart(e, name, price, image) {
+  function handleSendToCart(e, name, description, id, price, image, defaultPriceId) {
     e.preventDefault();
-    const data = {name, price, image}
+    const data = {name, description, id, price, image, defaultPriceId}
     
     addCartItem(data);
   }
@@ -62,7 +64,7 @@ export default function Home({ products }: HomeProps) {
                     <strong>{product.name}</strong>
                     <span>{product.price}</span>
                   </LeftSideFooter>
-                  <HandbagContainer onClick={(e) => handleSendToCart(e, product.name, product.price, product.imageUrl)}>
+                  <HandbagContainer onClick={(e) => handleSendToCart(e, product.name, product.description, product.id, product.price, product.imageUrl, product.defaultPriceId)}>
                     <Handbag size={32} color="#FFFFFF" weight='bold' />
                   </HandbagContainer>
                 </footer>
@@ -88,11 +90,13 @@ export const getStaticProps: GetStaticProps = async () => {
     return {
       id: product.id,
       name: product.name,
+      description: product.description,
       imageUrl: product.images[0],
       price: new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',
       }).format(price.unit_amount / 100),
+      defaultPriceId: price.id,
     }
   })
   

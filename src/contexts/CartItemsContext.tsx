@@ -4,6 +4,7 @@ interface Item {
   name: string
   price: string
   image: string
+  defaultPriceId: string
 }
 
 interface CartItemsContextType {
@@ -15,6 +16,7 @@ interface CartItemProps {
   name: string
   price: string
   image: string
+  defaultPriceId: string
 }
 
 interface CartItemsProviderProps {
@@ -30,7 +32,8 @@ export default function CartItemsProvider({ children }: CartItemsProviderProps) 
     setCartItems([...cartItems, {
       name: data.name,
       price: data.price, 
-      image: data.image
+      image: data.image,
+      defaultPriceId: data.defaultPriceId,
     }])
   }
 
