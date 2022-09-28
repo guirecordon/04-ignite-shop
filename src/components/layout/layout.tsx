@@ -25,8 +25,7 @@ export default function Layout({children}) {
         </CartIconContainer>
       </Header>
 
-
-      <div>{children}</div>
+      {children}
     </Container>
 
 
