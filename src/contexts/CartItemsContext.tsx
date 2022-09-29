@@ -10,6 +10,7 @@ interface Item {
 interface CartItemsContextType {
   cartItems: Item[]
   addCartItem: (data: CartItemProps) => (void)
+  handleRemoveItem: (priceId: string) => (void)
 }
 
 interface CartItemProps {
@@ -39,9 +40,14 @@ export default function CartItemsProvider({ children }: CartItemsProviderProps) 
 
   console.log(cartItems);
 
+  function handleRemoveItem(priceId) {
+    const filteredList = cartItems.filter(item => item.defaultPriceId != priceId);
+    setCartItems(filteredList);
+  }
+
 
   return (
-    <CartItemsContext.Provider value={{ cartItems, addCartItem }}>
+    <CartItemsContext.Provider value={{ cartItems, addCartItem, handleRemoveItem }}>
       {children}
     </CartItemsContext.Provider>
   )

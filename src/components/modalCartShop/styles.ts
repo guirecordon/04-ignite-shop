@@ -122,3 +122,8 @@ export const FooterLineTwo = styled('div', {
     fontWeight: 'bold',
   }
 })
+
+export const EmptyCartLiner = styled('p', {
+  padding: '3.5rem 0',
+  textAlign: 'center',
+})
