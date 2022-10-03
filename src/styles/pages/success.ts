@@ -36,14 +36,18 @@ export const SuccessContainer = styled('main', {
   },
 })
 
+export const MultipleImageContainer = styled('div', {
+  display: 'flex',
+})
+
 export const ImageContainer = styled('div', {
-  width: '100%',
-  maxWidth: 130,
+  Width: 145,
   height: 145,
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
-  borderRadius: 8,
-  padding: '0.25rem',
+  borderRadius: 1000,
+  padding: '0.5rem',
   marginTop: '4rem',
+  boxShadow: '-2px 0px black',
 
   display: 'flex',
   alignItems: 'center',
@@ -53,3 +57,4 @@ export const ImageContainer = styled('div', {
     objectFit: 'cover',
   }
 })
+
