@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useState } from "react"
 
 interface Item {
+  id: string
   name: string
   price: string
   image: string
@@ -14,6 +15,7 @@ interface CartItemsContextType {
 }
 
 interface CartItemProps {
+  id: string
   name: string
   price: string
   image: string
@@ -31,6 +33,7 @@ export default function CartItemsProvider({ children }: CartItemsProviderProps) 
 
   function addCartItem(data: CartItemProps) {
     setCartItems([...cartItems, {
+      id: data.id,
       name: data.name,
       price: data.price, 
       image: data.image,

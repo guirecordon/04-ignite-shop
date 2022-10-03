@@ -15,14 +15,44 @@ export default function ModalCartShop({ open, onClose }) {
 
   async function goToCart() {
     const myListItems = cartItems.map(item => {
+      return item.defaultPriceId
+    })
+
+    const countedProducts = myListItems.reduce((allProducts, name) => {
+      const currCount = allProducts[name] ?? 0;
       return {
-        price: item.defaultPriceId,
-        quantity: 1,
+        ...allProducts,
+        [name]: currCount + 1,
+      };
+    }, {});
+
+    console.log(countedProducts)
+
+    const myArrayWithNoDuplicates = myListItems.reduce(
+      (previousValue, currentValue) => {
+        if (!previousValue.includes(currentValue)) {
+          return [...previousValue, currentValue];
+        }
+        return previousValue;
+      },
+      [],
+    );
+
+    console.log(myArrayWithNoDuplicates)
+
+
+    const finalListItems = myArrayWithNoDuplicates.map(item => {
+      return {
+        price: item,
+        quantity: countedProducts[item],
       }
     })
 
+    console.log(finalListItems)
+
+
     const response = await axios.post('/api/checkout', {
-      myListItems,
+      finalListItems,
     })
 
     const { checkoutUrl } = response.data;
