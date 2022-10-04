@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useState } from "react"
 
 interface Item {
+  myId: number
   id: string
   name: string
   price: string
@@ -11,7 +12,7 @@ interface Item {
 interface CartItemsContextType {
   cartItems: Item[]
   addCartItem: (data: CartItemProps) => (void)
-  handleRemoveItem: (priceId: string) => (void)
+  handleRemoveItem: (productMyId: number) => (void)
 }
 
 interface CartItemProps {
@@ -30,9 +31,14 @@ export const CartItemsContext = createContext({} as CartItemsContextType)
 
 export default function CartItemsProvider({ children }: CartItemsProviderProps) {
   const [cartItems, setCartItems] = useState<Item[]>([])
+  const [uniqueId, setUniqueId] = useState(0)
+
 
   function addCartItem(data: CartItemProps) {
+    setUniqueId(uniqueId + 1);
+
     setCartItems([...cartItems, {
+      myId: uniqueId,
       id: data.id,
       name: data.name,
       price: data.price, 
@@ -43,8 +49,8 @@ export default function CartItemsProvider({ children }: CartItemsProviderProps) 
 
   console.log(cartItems);
 
-  function handleRemoveItem(priceId) {
-    const filteredList = cartItems.filter(item => item.defaultPriceId != priceId);
+  function handleRemoveItem(productMyId) {
+    const filteredList = cartItems.filter(item => item.myId != productMyId);
     setCartItems(filteredList);
   }
 

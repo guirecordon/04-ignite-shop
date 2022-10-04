@@ -60,7 +60,6 @@ export default function ModalCartShop({ open, onClose }) {
     window.location.href = checkoutUrl;
   }
 
-
   return open && (
     <ModalContainer>
       <XWrap onClick={onClose}>
@@ -72,7 +71,7 @@ export default function ModalCartShop({ open, onClose }) {
         <CartItemsContainer>
           {cartItems.map((item) => {
             return (
-              <ProductContainer key={item.name}>
+              <ProductContainer key={item.myId}>
                 <ImgWrap>
                   <Image src={item.image} width={95} height={95} alt="" />
                 </ImgWrap>
@@ -80,7 +79,7 @@ export default function ModalCartShop({ open, onClose }) {
                 <ProductDetailsWrap> 
                   <h4>{item.name}</h4>
                   <span>{item.price}</span>
-                  <p onClick={() => handleRemoveItem(item.defaultPriceId)}>
+                  <p onClick={() => handleRemoveItem(item.myId)}>
                     Remover
                   </p>
                 </ProductDetailsWrap>
