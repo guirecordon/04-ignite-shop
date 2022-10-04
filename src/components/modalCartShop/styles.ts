@@ -90,6 +90,11 @@ export const ModalFooter = styled('footer', {
   
     '&:hover': {
       background: '$green300',
+    },
+
+    '&:disabled': {
+      opacity: 0.7,
+      cursor: 'not-allowed',
     }
   }
 })

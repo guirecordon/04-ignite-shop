@@ -11,6 +11,7 @@ interface Item {
 
 interface CartItemsContextType {
   cartItems: Item[]
+  isSendDisabled: boolean
   addCartItem: (data: CartItemProps) => (void)
   handleRemoveItem: (productMyId: number) => (void)
 }
@@ -32,9 +33,12 @@ export const CartItemsContext = createContext({} as CartItemsContextType)
 export default function CartItemsProvider({ children }: CartItemsProviderProps) {
   const [cartItems, setCartItems] = useState<Item[]>([])
   const [uniqueId, setUniqueId] = useState(0)
+  const [isSendDisabled, setIsSendDisabled] = useState(true)
 
 
   function addCartItem(data: CartItemProps) {
+    setIsSendDisabled(false)
+    
     setUniqueId(uniqueId + 1);
 
     setCartItems([...cartItems, {
@@ -56,7 +60,7 @@ export default function CartItemsProvider({ children }: CartItemsProviderProps) 
 
 
   return (
-    <CartItemsContext.Provider value={{ cartItems, addCartItem, handleRemoveItem }}>
+    <CartItemsContext.Provider value={{ cartItems, addCartItem, handleRemoveItem, isSendDisabled }}>
       {children}
     </CartItemsContext.Provider>
   )

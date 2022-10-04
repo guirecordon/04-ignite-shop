@@ -6,7 +6,8 @@ import { CartItemsContext } from "../../contexts/CartItemsContext";
 import { CartItemsContainer, EmptyCartLiner, FooterLineOne, FooterLineTwo, ImgWrap, ModalContainer, ModalFooter, ProductContainer, ProductDetailsWrap, XWrap } from "./styles";
 
 export default function ModalCartShop({ open, onClose }) {
-  const { cartItems, handleRemoveItem } = useContext(CartItemsContext);
+  const { cartItems, handleRemoveItem, isSendDisabled } = useContext(CartItemsContext);
+
   const totalPrice = cartItems.reduce((acc, currVal) => {
     const formattedPrice = currVal.price.slice(3).replace(',', '.');
     const numberPrice = parseFloat(formattedPrice, 10);
@@ -104,7 +105,7 @@ export default function ModalCartShop({ open, onClose }) {
           </FooterLineTwo>
         </div>
 
-        <button onClick={goToCart}>
+        <button onClick={goToCart} disabled={isSendDisabled}>
           Finalizar compra
         </button>
       </ModalFooter>
