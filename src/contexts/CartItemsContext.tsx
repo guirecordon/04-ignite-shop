@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react"
+import { createContext, ReactNode, useEffect, useState } from "react"
 
 interface Item {
   myId: number
@@ -34,6 +34,11 @@ export default function CartItemsProvider({ children }: CartItemsProviderProps) 
   const [cartItems, setCartItems] = useState<Item[]>([])
   const [uniqueId, setUniqueId] = useState(0)
   const [isSendDisabled, setIsSendDisabled] = useState(true)
+
+
+  useEffect(() => {
+    cartItems.length === 0 && setIsSendDisabled(true);
+  }, [handleRemoveItem, cartItems])
 
 
   function addCartItem(data: CartItemProps) {
