@@ -3,6 +3,7 @@ import Image from "next/future/image";
 import { X } from "phosphor-react";
 import { useContext } from "react";
 import { CartItemsContext } from "../../contexts/CartItemsContext";
+import { formatter } from "../../utils/priceFormatter";
 import { CartItemsContainer, EmptyCartLiner, FooterLineOne, FooterLineTwo, ImgWrap, ModalContainer, ModalFooter, ProductContainer, ProductDetailsWrap, XWrap } from "./styles";
 
 export default function ModalCartShop({ open, onClose }) {
@@ -10,7 +11,7 @@ export default function ModalCartShop({ open, onClose }) {
 
   const totalPrice = cartItems.reduce((acc, currVal) => {
     const formattedPrice = currVal.price.slice(3).replace(',', '.');
-    const numberPrice = parseFloat(formattedPrice, 10);
+    const numberPrice = parseFloat(formattedPrice);
     return acc += numberPrice;
   }, 0)
 
@@ -101,7 +102,7 @@ export default function ModalCartShop({ open, onClose }) {
           </FooterLineOne>
           <FooterLineTwo>
             <h4>Valor Total</h4>
-            <span>{totalPrice}</span>
+            <span>{formatter.format(totalPrice)}</span>
           </FooterLineTwo>
         </div>
 
