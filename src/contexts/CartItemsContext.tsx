@@ -38,8 +38,7 @@ export default function CartItemsProvider({ children }: CartItemsProviderProps) 
 
   useEffect(() => {
     cartItems.length === 0 && setIsSendDisabled(true);
-  }, [handleRemoveItem, cartItems])
-
+  }, [cartItems])
 
   function addCartItem(data: CartItemProps) {
     setIsSendDisabled(false)
@@ -55,8 +54,6 @@ export default function CartItemsProvider({ children }: CartItemsProviderProps) 
       defaultPriceId: data.defaultPriceId,
     }])
   }
-
-  console.log(cartItems);
 
   function handleRemoveItem(productMyId) {
     const filteredList = cartItems.filter(item => item.myId != productMyId);

@@ -2,9 +2,10 @@ import axios from "axios"
 import { GetStaticPaths, GetStaticProps } from "next"
 import Image from "next/future/image"
 import Head from "next/head"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Stripe from "stripe"
 import Layout from "../../components/layout/layout"
+import { CartItemsContext } from "../../contexts/CartItemsContext"
 import { stripe } from "../../lib/stripe"
 import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/pages/product"
 
@@ -20,27 +21,15 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
-  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false);
+  const { addCartItem } = useContext(CartItemsContext)
 
-  async function handlePurchase() {
-    try {
-      setIsCreatingCheckoutSession(true);
-
-      const response = await axios.post('/api/checkout', {
-        priceId: product.defaultPriceId,
-      })
-
-      const { checkoutUrl } = response.data;
-
-      window.location.href = checkoutUrl;
-    } catch(err) {
-      // Conectar com uma ferramenta de observabilidade (Datadog / Sentry)
-
-      setIsCreatingCheckoutSession(false);
-
-      alert('Falha ao redirecionar ao checkout!')
-    }
+  function handleSendToCart(e, name, description, id, price, image, defaultPriceId) {
+    e.preventDefault();
+    const data = {name, description, id, price, image, defaultPriceId}
+    
+    addCartItem(data);
   }
+
 
   return (
     <Layout>
@@ -61,7 +50,7 @@ export default function Product({ product }: ProductProps) {
             {product.description}
           </p>
 
-          <button disabled={isCreatingCheckoutSession} onClick={handlePurchase}>
+          <button onClick={(e) => handleSendToCart(e, product.name, product.description, product.id, product.price, product.imageUrl, product.defaultPriceId)}>
             Colocar na sacola
           </button>
         </ProductDetails>
