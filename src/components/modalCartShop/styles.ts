@@ -6,6 +6,7 @@ export const ModalContainer = styled('section', {
   zIndex: 2000,
   width: 'calc((100vw / 3) + 82px)',
   height: '100vh',
+  overflowY: 'scroll',
   background: '$gray800',
   padding: '0 3rem',
 
@@ -26,7 +27,6 @@ export const XWrap = styled('div', {
 })
 
 export const CartItemsContainer = styled('div', {
-  overflowY: 'auto',
 })
 
 export const ProductContainer = styled('div', {
@@ -78,6 +78,7 @@ export const ModalFooter = styled('footer', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
+  paddingBottom: '1.25rem',
 
   button: {
     background: '$green500',
